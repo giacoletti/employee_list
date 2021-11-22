@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Image, Header } from "semantic-ui-react";
+import axios from "axios";
 
-const EmployeeModal = ({ employee }) => {
+const EmployeeModal = ({ id }) => {
 
   const [open, setOpen] = useState(false);
+  const [employee, setEmployee] = useState({});
+
+  const fetchEmployee = async () => {
+    const response = await axios.get(`https://reqres.in/api/users/${id}`);
+    setEmployee(response.data.data);
+  };
+  
+  useEffect(() => {
+    fetchEmployee();
+  });
 
   return (
     <Modal
@@ -21,7 +32,7 @@ const EmployeeModal = ({ employee }) => {
           </p>
         </Modal.Description>
       </Modal.Content>
-      
+
       <Modal.Actions>
         <Button color="black">Edit</Button>
         <Button negative>Delete</Button>

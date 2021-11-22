@@ -23,7 +23,7 @@ const EmployeeList = () => {
         <Item.Content verticalAlign="middle">
           <Item.Header>{`${employee.first_name} ${employee.last_name}`}</Item.Header>
           <Item.Extra>
-            <EmployeeModal employee={employee}/>
+            <EmployeeModal id={employee.id}/>
           </Item.Extra>
         </Item.Content>
       </Item>
