@@ -6,9 +6,8 @@ const App = () => {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    await axios.get('https://reqres.in/api/users?per_page=5').then((response) => {
-      setEmployees(response.data.data);
-    });
+    const response = await axios.get('https://reqres.in/api/users?per_page=5');
+    setEmployees(response.data.data);
   };
 
   useEffect(() => {

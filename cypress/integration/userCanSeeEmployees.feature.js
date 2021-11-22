@@ -6,6 +6,12 @@ describe('Visiting the application, a user', () => {
     cy.visit('/');
   });
 
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false;
+  });
+
   it('is expected to see a header', () => {
     cy.get('[data-cy=employee-header]').should('contain.text', 'Employee List');
   });
