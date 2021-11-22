@@ -1,12 +1,15 @@
 import React from "react";
 import EmployeeList from "./EmployeeList";
+import { Container, Header } from "semantic-ui-react";
 
 const App = () => {
 
   return (
     <React.Fragment>
-      <h1 data-cy="employee-header">Employee List</h1>
-      <EmployeeList />
+      <Container>
+        <Header size="huge" data-cy="employee-header" >Employee List</Header>
+        <EmployeeList />
+      </Container>
     </React.Fragment>
   );
 };
