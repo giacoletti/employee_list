@@ -16,7 +16,19 @@ describe('Visiting the application, a user', () => {
     cy.get('[data-cy=employee-header]').should('contain.text', 'Employee List');
   });
 
-  it('is expected to see 5 list items', () => {
-    cy.get('[data-cy=employee-list]').children().should('have.length', 5);
+  describe('can see an employee list and', () => {
+    
+    it('is expected to see 5 list items', () => {
+      cy.get('[data-cy=employee-list]').children().should('have.length', 5);
+    });
+
+    it('is expected to see first employee full name', () => {
+      cy.get('[data-cy=employee-list]').within(() => {
+        cy.get('li')
+        .first()
+        .should('contain.text', 'Thomas Bluth');
+      });
+    });
   });
+
 });
