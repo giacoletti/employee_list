@@ -18,6 +18,7 @@ const EmployeeList = () => {
   const employeeList = employees.map((employee) => {
     return (
       <Item data-cy={`employee-${employee.id}`} key={employee.id}>
+        <Item.Image circular size="tiny" alt={`${employee.first_name} ${employee.last_name} picture`} src={employee.avatar} />
         <Item.Content verticalAlign="middle">
           <Item.Header>{`${employee.first_name} ${employee.last_name}`}</Item.Header>
         </Item.Content>

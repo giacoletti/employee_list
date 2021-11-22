@@ -26,8 +26,9 @@ describe('Visiting the application, a user', () => {
       cy.get('[data-cy=employee-list]').children().should('have.length', 5);
     });
 
-    it('is expected to see first employee full name', () => {
+    it('is expected to see first employee picture and full name', () => {
       cy.get('[data-cy=employee-1]').within(() => {
+        cy.get('.image').should('be.visible');
         cy.get('.header').should('contain.text', 'Thomas Bluth');
       });
     });
