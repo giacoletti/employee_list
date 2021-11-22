@@ -1,5 +1,5 @@
 import React from "react";
-import EmployeeList from "./EmployeeList";
+import EmployeeList from "./components/EmployeeList";
 import { Container, Header } from "semantic-ui-react";
 
 const App = () => {
