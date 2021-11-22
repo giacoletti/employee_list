@@ -27,10 +27,8 @@ describe('Visiting the application, a user', () => {
     });
 
     it('is expected to see first employee full name', () => {
-      cy.get('[data-cy=employee-list]').within(() => {
-        cy.get('.header')
-        .first()
-        .should('contain.text', 'Thomas Bluth');
+      cy.get('[data-cy=employee-1]').within(() => {
+        cy.get('.header').should('contain.text', 'Thomas Bluth');
       });
     });
   });

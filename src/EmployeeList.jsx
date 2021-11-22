@@ -17,7 +17,7 @@ const EmployeeList = () => {
 
   const employeeList = employees.map((employee) => {
     return (
-      <Item key={employee.id}>
+      <Item data-cy={`employee-${employee.id}`} key={employee.id}>
         <Item.Content verticalAlign="middle">
           <Item.Header>{`${employee.first_name} ${employee.last_name}`}</Item.Header>
         </Item.Content>
