@@ -1,8 +1,11 @@
 describe('Visiting the application, a user can click the view button next to an employee', () => {
   beforeEach(() => {
+    cy.intercept('GET', 'https://reqres.in/api/users**', {
+      fixture: 'usersResponse.json'
+    });
     cy.visit('/');
     cy.get('[data-cy=employee-1]').within(() => {
-      cy.get('.view-employee-button').click();
+      cy.get('[data-cy=view-employee-button]').click();
     });
   });
 
