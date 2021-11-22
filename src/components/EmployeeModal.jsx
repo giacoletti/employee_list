@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button, Image, Header } from "semantic-ui-react";
 import axios from "axios";
 
@@ -11,17 +11,13 @@ const EmployeeModal = ({ id }) => {
     const response = await axios.get(`https://reqres.in/api/users/${id}`);
     setEmployee(response.data.data);
   };
-  
-  useEffect(() => {
-    fetchEmployee();
-  });
 
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button size="tiny" positive data-cy="view-employee-button">View</Button>}
+      trigger={<Button onClick={() => fetchEmployee()} size="tiny" positive data-cy="view-employee-button">View</Button>}
     >
       <Modal.Content image data-cy="modal-container">
         <Image data-cy="employee-image" size="small" src={employee.avatar} wrapped />
