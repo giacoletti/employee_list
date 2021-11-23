@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Image, Header } from "semantic-ui-react";
-import axios from "axios";
+import Users from "../modules/Users";
 
 const EmployeeModal = ({ id }) => {
 
@@ -8,8 +8,8 @@ const EmployeeModal = ({ id }) => {
   const [employee, setEmployee] = useState({});
 
   const fetchEmployee = async () => {
-    const response = await axios.get(`https://reqres.in/api/users/${id}`);
-    setEmployee(response.data.data);
+    const response = await Users.show(id);
+    setEmployee(response);
   };
 
   return (

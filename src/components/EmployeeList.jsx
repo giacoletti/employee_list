@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import EmployeeModal from "./EmployeeModal";
-import axios from "axios";
+import EmployeeListItem from "./EmployeeListItem";
 import { Item } from "semantic-ui-react";
+import Users from "../modules/Users";
 
 const EmployeeList = () => {
 
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    const response = await axios.get('https://reqres.in/api/users?per_page=5');
-    setEmployees(response.data.data);
+    const response = await Users.index({ per_page: 5 });
+    setEmployees(response);
   };
 
   useEffect(() => {
@@ -18,15 +18,7 @@ const EmployeeList = () => {
 
   const employeeList = employees.map((employee) => {
     return (
-      <Item data-cy={`employee-${employee.id}`} key={employee.id}>
-        <Item.Image circular size="tiny" alt={`${employee.first_name} ${employee.last_name} picture`} src={employee.avatar} />
-        <Item.Content verticalAlign="middle">
-          <Item.Header>{`${employee.first_name} ${employee.last_name}`}</Item.Header>
-          <Item.Extra>
-            <EmployeeModal id={employee.id}/>
-          </Item.Extra>
-        </Item.Content>
-      </Item>
+      <EmployeeListItem key={employee.id} employee={employee} />
     );
   });
 
