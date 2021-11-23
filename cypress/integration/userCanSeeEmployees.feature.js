@@ -4,25 +4,27 @@ describe('Visiting the application, a user', () => {
       fixture: 'usersResponse.json'
     }).as("fetchData");
     cy.visit('/');
+    cy.wait('@fetchData');
   });
 
-  Cypress.on('uncaught:exception', (err, runnable, promise) => {
-    // when the exception originated from an unhandled promise
-    // rejection, the promise is provided as a third argument
-    // you can turn off failing the test in this case
-    if (promise) {
-      return false
-    }
-    // we still want to ensure there are no other unexpected
-    // errors, so we let them fail the test
-  })
+  // Cypress.on('uncaught:exception', (err, runnable, promise) => {
+  //   // when the exception originated from an unhandled promise
+  //   // rejection, the promise is provided as a third argument
+  //   // you can turn off failing the test in this case
+  //   if (promise) {
+  //     return false
+  //   }
+  //   // we still want to ensure there are no other unexpected
+  //   // errors, so we let them fail the test
+  // })
 
   it('is expected to see a header', () => {
     cy.get('[data-cy=employee-header]').should('contain.text', 'Employee List');
   });
 
   it('is expected to return an array of data', () => {
-    cy.wait('@fetchData').its('response.body.data').should('be.an', 'array');
+    cy.get('@fetchData').its('response.body.data').should('be.an', 'array');
+    // cy.wait('@fetchData').its('response.body.data').should('be.an', 'array');
   });
 
   describe('can see an employee list and', () => {
